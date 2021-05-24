@@ -1,0 +1,6 @@
+# Local .terraform directories
+**terraform*
+
+# Crash log files
+crash.log
+kubeconfig*
