@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik
+  namespace: ingress-controllers  
+  labels:
+    app: traefik
+spec:
+  entryPoints:
+  - websecure
+  routes:   
+  - match: Host(`traefik.justpipeline.com`) # && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+    kind: Rule
+    services:        
+      - name: api@internal
+        kind: TraefikService  
+  
+        
+
+
+
+
+    
+    
