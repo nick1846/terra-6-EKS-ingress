@@ -16,8 +16,9 @@ data "kubectl_path_documents" "namespaces" {
 }
 
 resource "kubectl_manifest" "my_namespaces" {
-  count     = length(data.kubectl_path_documents.namespaces.documents)
-  yaml_body = element(data.kubectl_path_documents.namespaces.documents, count.index)
+  count      = length(data.kubectl_path_documents.namespaces.documents)
+  yaml_body  = element(data.kubectl_path_documents.namespaces.documents, count.index)
+  depends_on = [module.my_eks]
 }
 
 ################################
@@ -45,7 +46,7 @@ resource "kubectl_manifest" "my_ingress" {
   count     = length(data.kubectl_path_documents.ingress.documents)
   yaml_body = element(data.kubectl_path_documents.ingress.documents, count.index)
 
-  depends_on = [ helm_release.helm-traefik, helm_release.helm-aws-ingress, helm_release.helm-ext-dns ]
+  depends_on = [helm_release.helm-traefik, helm_release.helm-aws-ingress, helm_release.helm-ext-dns]
 }
 
 

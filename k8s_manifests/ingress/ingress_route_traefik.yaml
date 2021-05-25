@@ -9,7 +9,7 @@ spec:
   entryPoints:
   - websecure
   routes:   
-  - match: Host(`traefik.justpipeline.com`) # && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+  - match: Host(`traefik.justpipeline.com`) #&& (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
     kind: Rule
     services:        
       - name: api@internal
